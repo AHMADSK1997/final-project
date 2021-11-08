@@ -1,2 +1,4 @@
 binance-connector
 datetime
+websocket-client
+threaded

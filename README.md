@@ -12,4 +12,4 @@ pip install -r requirements.txt
 python -u botpy
 ```
 ## I'm still working on it
-÷ will build statistical arbitrage bot system
+will build statistical arbitrage bot system

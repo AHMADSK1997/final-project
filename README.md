@@ -13,5 +13,3 @@ python -u botpy
 ```
 ## I'm still working on it
 will build statistical arbitrage bot system
-
-ahnad and yusef

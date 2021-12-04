@@ -1,4 +1,6 @@
 binance-connector
 websocket-client
+python-binance
 numpy
 scipy
+flask

@@ -1,6 +1,7 @@
 binance-connector
 websocket-client
 python-binance
+geneticalgorithm
 numpy
 scipy
 flask

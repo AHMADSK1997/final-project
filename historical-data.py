@@ -17,5 +17,5 @@ def Read_Save_Data(symbol,interval,startDate,endDate,fileName):
         candlestick_writer.writerow([candlestick[0],candlestick[4]]) # time and close
     csvfile.close()
 
-Read_Save_Data("BTCUSDT", Client.KLINE_INTERVAL_1MINUTE,"5 Nov, 2020","6 Nov, 2021", "BTC-1-minute.csv")
-Read_Save_Data("ETHUSDT", Client.KLINE_INTERVAL_1MINUTE,"5 Nov, 2020","6 Nov, 2021", "ETH-1-minute.csv")
+Read_Save_Data("BTCUSDT", Client.KLINE_INTERVAL_1MINUTE,"5 Nov, 2019","6 Nov, 2021", "BTC-2-minute.csv")
+Read_Save_Data("ETHUSDT", Client.KLINE_INTERVAL_1MINUTE,"5 Nov, 2019","6 Nov, 2021", "ETH-2-minute.csv")

@@ -48,6 +48,6 @@ model=ga(function=f,\
             variable_type_mixed=vartype,\
             algorithm_parameters=algorithm_param)
 
-model.run()
-print(model.best_variable[0])
-print(-1*model.best_function)
+def runGa():
+    model.run()
+    return model.best_variable

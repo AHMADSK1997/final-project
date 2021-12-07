@@ -20,19 +20,16 @@
         </section>
         <h3>Parameters</h3>
         <section id="Parameters">
-            ZScore
-            <input type="text"/>
-            Stoploss  
-            <input type="text"/>
-            TakeProfit
-            <input type="text"/>
-            Timeout
-            <input type="text"/>
+            UPPER_THRESHOLD : {{Upper}}
+            LOWER_THRESHOLD : {{Lower}}
+            Stoploss : {{Stoploss}}
+            TakeProfit : {{Takeprofit}}
+            Timeout : {{Timeout}}
         </section>
         <br>
-        <section>
-            <button> <a href="/my-link/">Click me</a></button>
-        </section>
+        <form action="/forward/" method="post">
+            <button name="forwardBtn" type="submit">Click me</button>
+        </form>
         <h3>settings</h3>
         <section id="order">
             USDT Start

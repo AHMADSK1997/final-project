@@ -1,7 +1,9 @@
 import numpy as np
 from geneticalgorithm import geneticalgorithm as ga
-from trade_strategy import fitnessHelp
 import pandas as pd
+import sys
+sys.path.insert(0, '../final project/strategy')
+from trade_strategy import fitnessHelp
 
 i=0
 btc_arr = None
@@ -9,13 +11,13 @@ eth_arr = None
 def f(X):
     global btc_arr,eth_arr,i
     if(i == 0):
-        btc_arr = getDatafromExel(100 ,'BTC-1-minute.csv', 0)
-        eth_arr = getDatafromExel(100 ,'ETH-1-minute.csv', 0)
+        btc_arr = getDatafromExel(100 ,'genetic_algorithm\BTC-1-minute.csv', 0)
+        eth_arr = getDatafromExel(100 ,'genetic_algorithm\ETH-1-minute.csv', 0)
         profit = fitnessHelp(btc_arr, eth_arr, X)
         i+=100
     else:
-        btc_row = getDatafromExel(1, 'BTC-1-minute.csv', i)
-        eth_row = getDatafromExel(1, 'ETH-1-minute.csv', i)
+        btc_row = getDatafromExel(1, 'genetic_algorithm\BTC-1-minute.csv', i)
+        eth_row = getDatafromExel(1, 'genetic_algorithm\ETH-1-minute.csv', i)
         btc_arr = np.delete(btc_arr,0)
         btc_arr = np.append(btc_arr,btc_row)
         eth_arr = np.delete(eth_arr,0)
@@ -32,8 +34,8 @@ def getDatafromExel(num_of_points ,file_name, start):
 varbound=np.array([[-1000,0],[0,1000],[0,5*60],[0,5],[-5,0]])
 vartype=np.array([['int'],['int'],['int'],['real'],['real']])
 
-algorithm_param = {'max_num_iteration': 1000,\
-                   'population_size':100,\
+algorithm_param = {'max_num_iteration': 50,\
+                   'population_size':10,\
                    'mutation_probability':0.1,\
                    'elit_ratio': 0.01,\
                    'crossover_probability': 0.5,\

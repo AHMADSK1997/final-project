@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./strategy",
+        "./genetic_algorithm"
+    ]
+}

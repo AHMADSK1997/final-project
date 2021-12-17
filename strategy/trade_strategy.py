@@ -3,21 +3,29 @@ import parameters
 from scipy import stats
 import time
 
+
 def fitnessHelp(btc_arr, eth_arr, prams):
     parameters.STOP_LOSS = prams[0]
     parameters.TAKE_PROFIT = prams[1]
     parameters.TIME_OUT = prams[2]
     parameters.UPPER_THRESHOLD = prams[3]
     parameters.LOWER_THRESHOLD = prams[4]
-    #print(type(btc_arr[0]))
+    parameters.USDT_START = 100000
+    parameters.BTC_AMOUNT = (parameters.USDT_START/2)/float(btc_arr[parameters.PERIOD])
+    parameters.ETH_AMOUNT = (parameters.USDT_START/2)/float(eth_arr[parameters.PERIOD])
+    parameters.BTC_AMOUNT_BEFOR_ORDER = parameters.BTC_AMOUNT
+    parameters.ETH_AMOUNT_BEFOR_ORDER = parameters.ETH_AMOUNT    
     for i in range (len(btc_arr)):
         bot_trade(btc_arr[i:i+parameters.PERIOD],eth_arr[i:i+parameters.PERIOD])
-    profit = parameters.BTC_AMOUNT*btc_arr[i] + parameters.ETH_AMOUNT*eth_arr[i] - parameters.USDT_START
-    parameters.USDT_START = parameters.BTC_AMOUNT*btc_arr[i] + parameters.ETH_AMOUNT*eth_arr[i]
+    profit = parameters.BTC_AMOUNT*btc_arr[len(btc_arr)-1] + parameters.ETH_AMOUNT*eth_arr[len(btc_arr)-1] - parameters.USDT_START
+    #parameters.USDT_START = parameters.BTC_AMOUNT*btc_arr[i] + parameters.ETH_AMOUNT*eth_arr[i]
+    print("the prifit ######### {}".format(profit))
     return profit
 
 def bot_trade(btc_closes,eth_closes):
+    #time.sleep(0.1)
     #print('bot trade is runing')
+    #print(parameters.USDT_START)
     #print(btc_closes)
     my_zscore = calculateZscore(btc_closes,eth_closes)
     trigger = getTrigger(my_zscore, btc_closes[-1:][0], eth_closes[-1:][0])
@@ -31,7 +39,7 @@ def bot_trade(btc_closes,eth_closes):
     #print("***********************************")
 
 def create_order(btc_price,eth_price,order):
-    #print("createing order: {}".format(order))
+    print("createing order: {}".format(order))
     parameters.LAST_ORDER['order'] = order
     parameters.BTC_AMOUNT_BEFOR_ORDER = parameters.BTC_AMOUNT
     parameters.ETH_AMOUNT_BEFOR_ORDER = parameters.ETH_AMOUNT
@@ -42,8 +50,8 @@ def create_order(btc_price,eth_price,order):
     elif(order == 'Sell BTC and buy ETH'):
         parameters.BTC_AMOUNT -= parameters.OREDR_AMOUNT/btc_price
         parameters.ETH_AMOUNT += parameters.OREDR_AMOUNT/eth_price
-    #print('My current BTC is: {}'.format(parameters.BTC_AMOUNT))
-    #print('My current ETH is: {}'.format(parameters.ETH_AMOUNT))
+    print('My current BTC is: {}'.format(parameters.BTC_AMOUNT))
+    print('My current ETH is: {}'.format(parameters.ETH_AMOUNT))
     parameters.PORTFOLIO_AFER_ORDER = parameters.BTC_AMOUNT*btc_price + parameters.ETH_AMOUNT*eth_price
 
 def calculateZscore(btc_closes,eth_closes):

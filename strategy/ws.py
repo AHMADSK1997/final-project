@@ -1,3 +1,4 @@
+import threading
 import websocket, json, pprint, numpy
 from trade_strategy import bot_trade  
 from binance.client import Client
@@ -49,5 +50,6 @@ def runWS():
     historical_last_in_minutes("ETHUSDT","10",closesEth)
     socket = f'wss://stream.binance.com:9443/stream?streams=ethusdt@kline_1m/btcusdt@kline_1m'
     ws = websocket.WebSocketApp(socket, on_open=on_open ,on_message=on_message, on_close=on_close)
-    ws.run_forever()
-
+    wst = threading.Thread(target=ws.run_forever)
+    wst.daemon = True
+    wst.start()

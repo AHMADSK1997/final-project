@@ -11,8 +11,8 @@ eth_arr = None
 def f(X):
     global btc_arr,eth_arr,i
     if(i == 0):
-        btc_arr = getDatafromExel(100 ,'genetic_algorithm\BTC-1-minute.csv', 0)
-        eth_arr = getDatafromExel(100 ,'genetic_algorithm\ETH-1-minute.csv', 0)
+        btc_arr = getDatafromExel(1000 ,'genetic_algorithm\BTC-1-minute.csv', 0)
+        eth_arr = getDatafromExel(1000 ,'genetic_algorithm\ETH-1-minute.csv', 0)
         profit = fitnessHelp(btc_arr, eth_arr, X)
         i+=100
     else:
@@ -34,8 +34,8 @@ def getDatafromExel(num_of_points ,file_name, start):
 varbound=np.array([[-1000,0],[0,1000],[0,5*60],[0,5],[-5,0]])
 vartype=np.array([['int'],['int'],['int'],['real'],['real']])
 
-algorithm_param = {'max_num_iteration': 50,\
-                   'population_size':10,\
+algorithm_param = {'max_num_iteration': 300,\
+                   'population_size':100,\
                    'mutation_probability':0.1,\
                    'elit_ratio': 0.01,\
                    'crossover_probability': 0.5,\
